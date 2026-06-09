@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:windows="clr-namespace:ZooVillage.Views.Windows"
-        Width="860" Height="620"
+        Width="700" Height="580"
         Background="Transparent">
 
     <Border Background="#ECF0F1" CornerRadius="15"
@@ -28,81 +28,175 @@
             <!-- Вкладки -->
             <TabControl Grid.Row="1" Background="#ECF0F1" BorderThickness="0">
 
-                <!-- КУПИТЬ -->
+                <!-- ===== КУПИТЬ ===== -->
                 <TabItem Header="🛍️ Купить" FontSize="16" FontWeight="Bold">
-                    <Grid Background="#ECF0F1">
+                    <Grid Margin="20">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid Grid.Row="0" x:Name="BuyItemsGrid" AutoGenerateColumns="False"
-                                  Background="White" GridLinesVisibility="All" BorderBrush="#95A5A6"
-                                  IsReadOnly="True" SelectionUnit="FullRow" CanUserAddRows="False"
-                                  CanUserDeleteRows="False" CanUserReorderColumns="False"
-                                  CanUserResizeRows="False" CanUserSortColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Товар"      Binding="{Binding ItemName}"  Width="250"/>
-                                <DataGridTextColumn Header="Цена"       Binding="{Binding Price}"     Width="100"/>
-                                <DataGridTextColumn Header="В наличии"  Binding="{Binding Available}" Width="100"/>
-                                <DataGridTemplateColumn Header="Действие" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="Купить" Width="100" Height="35"
-                                                    Background="#27AE60" Foreground="White"
-                                                    BorderThickness="0" Cursor="Hand" FontWeight="Bold"
-                                                    Click="BuyButton_Click" Tag="{Binding}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <!-- Шапка таблицы -->
+                        <Grid Grid.Row="0" Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Товар" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D"/>
+                            <TextBlock Grid.Column="1" Text="Кол-во" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="Цена" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
+                        </Grid>
 
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,12"
-                                    HorizontalAlignment="Right">
-                            <TextBlock Text="Ваши средства: " FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="BuyMoneyDisplay" Text="0" FontSize="14" FontWeight="Bold"
-                                       Foreground="#27AE60" VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <!-- Список товаров -->
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="BuyList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="White" CornerRadius="8" Margin="0,4"
+                                                BorderBrush="#D5D8DC" BorderThickness="1" Padding="12,10">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Название -->
+                                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding ItemName}" FontSize="16" FontWeight="SemiBold"/>
+                                                    <TextBlock Text="{Binding Price, StringFormat='{}Цена: {0} руб.'}"
+                                                               FontSize="12" Foreground="#7F8C8D"/>
+                                                </StackPanel>
+
+                                                <!-- +/- и счётчик -->
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Button Content="−" Width="32" Height="32" FontSize="18"
+                                                            Background="#E74C3C" Foreground="White" BorderThickness="0"
+                                                            Cursor="Hand" Tag="{Binding}"
+                                                            Click="BuyMinus_Click"/>
+                                                    <TextBlock Text="{Binding Quantity}" FontSize="16" FontWeight="Bold"
+                                                               Width="36" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                    <Button Content="+" Width="32" Height="32" FontSize="18"
+                                                            Background="#27AE60" Foreground="White" BorderThickness="0"
+                                                            Cursor="Hand" Tag="{Binding}"
+                                                            Click="BuyPlus_Click"/>
+                                                </StackPanel>
+
+                                                <!-- Итог по позиции -->
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding Quantity, StringFormat='{}{0} шт.'}"
+                                                           FontSize="14" FontWeight="Bold" Foreground="#2C3E50"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <!-- Итог + кнопка Купить -->
+                        <Border Grid.Row="2" Background="#2C3E50" CornerRadius="10" Padding="16,12" Margin="0,10,0,0">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="Итого: " Foreground="White" FontSize="16"/>
+                                    <TextBlock x:Name="BuyTotalText" Text="0 руб."
+                                               Foreground="#F1C40F" FontSize="16" FontWeight="Bold"/>
+                                </StackPanel>
+                                <Button Content="✅ Купить" Width="140" Height="44" FontSize="16" FontWeight="Bold"
+                                        Background="#27AE60" Foreground="White" BorderThickness="0"
+                                        HorizontalAlignment="Right" Cursor="Hand"
+                                        Click="BuyConfirm_Click"/>
+                            </Grid>
+                        </Border>
                     </Grid>
                 </TabItem>
 
-                <!-- ПРОДАТЬ -->
+                <!-- ===== ПРОДАТЬ ===== -->
                 <TabItem Header="💸 Продать" FontSize="16" FontWeight="Bold">
-                    <Grid Background="#ECF0F1">
+                    <Grid Margin="20">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid Grid.Row="0" x:Name="SellItemsGrid" AutoGenerateColumns="False"
-                                  Background="White" GridLinesVisibility="All" BorderBrush="#95A5A6"
-                                  IsReadOnly="True" SelectionUnit="FullRow" CanUserAddRows="False"
-                                  CanUserDeleteRows="False" CanUserReorderColumns="False"
-                                  CanUserResizeRows="False" CanUserSortColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Товар"        Binding="{Binding ItemName}"  Width="250"/>
-                                <DataGridTextColumn Header="Цена продажи" Binding="{Binding SellPrice}" Width="120"/>
-                                <DataGridTextColumn Header="У вас есть"   Binding="{Binding OwnCount}"  Width="100"/>
-                                <DataGridTemplateColumn Header="Действие" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="Продать" Width="100" Height="35"
-                                                    Background="#C0392B" Foreground="White"
-                                                    BorderThickness="0" Cursor="Hand" FontWeight="Bold"
-                                                    Click="SellButton_Click" Tag="{Binding}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <!-- Шапка таблицы -->
+                        <Grid Grid.Row="0" Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Товар" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D"/>
+                            <TextBlock Grid.Column="1" Text="Кол-во" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="Есть" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
+                        </Grid>
 
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,12"
-                                    HorizontalAlignment="Right">
-                            <TextBlock Text="Ваши средства: " FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                            <TextBlock x:Name="SellMoneyDisplay" Text="0" FontSize="14" FontWeight="Bold"
-                                       Foreground="#C0392B" VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <!-- Список товаров -->
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="SellList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="White" CornerRadius="8" Margin="0,4"
+                                                BorderBrush="#D5D8DC" BorderThickness="1" Padding="12,10">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Название -->
+                                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding ItemName}" FontSize="16" FontWeight="SemiBold"/>
+                                                    <TextBlock Text="{Binding SellPrice, StringFormat='{}Цена: {0} руб.'}"
+                                                               FontSize="12" Foreground="#7F8C8D"/>
+                                                </StackPanel>
+
+                                                <!-- +/- и счётчик -->
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Button Content="−" Width="32" Height="32" FontSize="18"
+                                                            Background="#E74C3C" Foreground="White" BorderThickness="0"
+                                                            Cursor="Hand" Tag="{Binding}"
+                                                            Click="SellMinus_Click"/>
+                                                    <TextBlock Text="{Binding Quantity}" FontSize="16" FontWeight="Bold"
+                                                               Width="36" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                    <Button Content="+" Width="32" Height="32" FontSize="18"
+                                                            Background="#27AE60" Foreground="White" BorderThickness="0"
+                                                            Cursor="Hand" Tag="{Binding}"
+                                                            Click="SellPlus_Click"/>
+                                                </StackPanel>
+
+                                                <!-- Есть в наличии -->
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding OwnCount, StringFormat='{}{0} шт.'}"
+                                                           FontSize="14" Foreground="#7F8C8D"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <!-- Итог + кнопка Продать -->
+                        <Border Grid.Row="2" Background="#2C3E50" CornerRadius="10" Padding="16,12" Margin="0,10,0,0">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="Итого: " Foreground="White" FontSize="16"/>
+                                    <TextBlock x:Name="SellTotalText" Text="0 руб."
+                                               Foreground="#F1C40F" FontSize="16" FontWeight="Bold"/>
+                                </StackPanel>
+                                <Button Content="💰 Продать" Width="140" Height="44" FontSize="16" FontWeight="Bold"
+                                        Background="#C0392B" Foreground="White" BorderThickness="0"
+                                        HorizontalAlignment="Right" Cursor="Hand"
+                                        Click="SellConfirm_Click"/>
+                            </Grid>
+                        </Border>
                     </Grid>
                 </TabItem>
             </TabControl>

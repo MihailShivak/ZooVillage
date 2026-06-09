@@ -32,27 +32,104 @@ namespace ZooVillage.Views.Windows
             _sellItems.Add(new StoreItem { ItemName = "🧶 Шерсть", SellPrice = 40, OwnCount = 5  });
             _sellItems.Add(new StoreItem { ItemName = "🌾 Зерно",  SellPrice = 30, OwnCount = 20 });
 
-            BuyItemsGrid.ItemsSource = _buyItems;
-            SellItemsGrid.ItemsSource = _sellItems;
+            BuyList.ItemsSource = _buyItems;
+            SellList.ItemsSource = _sellItems;
+        }
 
-            BuyMoneyDisplay.Text = "1500";
-            SellMoneyDisplay.Text = "1500";
+        // ───── Покупка: +/- через перегрузку операторов ─────
+
+        private void BuyPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button { Tag: StoreItem item })
+            {
+                item++;          // вызов operator++
+                UpdateBuyTotal();
+            }
+        }
+
+        private void BuyMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button { Tag: StoreItem item })
+            {
+                item--;          // вызов operator--
+                UpdateBuyTotal();
+            }
+        }
+
+        private void UpdateBuyTotal()
+        {
+            int total = 0;
+            foreach (var item in _buyItems)
+                total += item.Price * item.Quantity;
+            BuyTotalText.Text = $"{total} руб.";
+        }
+
+        private void BuyConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            int total = 0;
+            var lines = new System.Text.StringBuilder();
+            foreach (var item in _buyItems)
+            {
+                if (item.Quantity > 0)
+                {
+                    lines.AppendLine($"{item.ItemName}  ×{item.Quantity}  = {item.Price * item.Quantity} руб.");
+                    total += item.Price * item.Quantity;
+                }
+            }
+
+            if (total == 0) { MessageBox.Show("Выберите товар.", "Покупка"); return; }
+
+            MessageBox.Show($"{lines}\nИтого: {total} руб.", "Подтверждение покупки",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        // ───── Продажа: +/- через перегрузку операторов ─────
+
+        private void SellPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button { Tag: StoreItem item })
+            {
+                item++;
+                UpdateSellTotal();
+            }
+        }
+
+        private void SellMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button { Tag: StoreItem item })
+            {
+                item--;
+                UpdateSellTotal();
+            }
+        }
+
+        private void UpdateSellTotal()
+        {
+            int total = 0;
+            foreach (var item in _sellItems)
+                total += item.SellPrice * item.Quantity;
+            SellTotalText.Text = $"{total} руб.";
+        }
+
+        private void SellConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            int total = 0;
+            var lines = new System.Text.StringBuilder();
+            foreach (var item in _sellItems)
+            {
+                if (item.Quantity > 0)
+                {
+                    lines.AppendLine($"{item.ItemName}  ×{item.Quantity}  = {item.SellPrice * item.Quantity} руб.");
+                    total += item.SellPrice * item.Quantity;
+                }
+            }
+
+            if (total == 0) { MessageBox.Show("Выберите товар.", "Продажа"); return; }
+
+            MessageBox.Show($"{lines}\nИтого: {total} руб.", "Подтверждение продажи",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
-
-        private void BuyButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button { Tag: StoreItem item })
-                MessageBox.Show($"Вы купили: {item.ItemName} за {item.Price} руб.", "Покупка",
-                                MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void SellButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button { Tag: StoreItem item })
-                MessageBox.Show($"Вы продали: {item.ItemName} за {item.SellPrice} руб.", "Продажа",
-                                MessageBoxButton.OK, MessageBoxImage.Information);
-        }
     }
 }

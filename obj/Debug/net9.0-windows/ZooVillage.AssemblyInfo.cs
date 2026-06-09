@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZooVillage")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74bbf7cc69c63ab41181f6257c253dd6d94fd72c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7d2464e81f44972a02e5e33f8e0a48715a41796")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZooVillage")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZooVillage")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
