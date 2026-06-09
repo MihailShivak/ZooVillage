@@ -8,7 +8,11 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ZooVillage
+<<<<<<< HEAD
 build_property.ProjectDir = E:\kubstu\OOP\ZooVillage\
+=======
+build_property.ProjectDir = D:\ООП\Мишин Олег\ZooVillage\
+>>>>>>> origin/oleg
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false
