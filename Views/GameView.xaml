@@ -9,7 +9,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Rectangle Fill="#27AE60" Grid.RowSpan="3"/>
+        <Rectangle Fill="#27AE60" Grid.RowSpan="3" IsHitTestVisible="False"/>
+
+        <!-- Контейнер для popups -->
+        <ContentControl x:Name="PopupContainer" Grid.RowSpan="3"/>
 
         <Grid Grid.Row="0" Margin="30, 20, 30, 0">
             <Grid.ColumnDefinitions>

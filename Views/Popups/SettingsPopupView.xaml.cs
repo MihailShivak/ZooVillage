@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ZooVillage.Views.Popups
 {
-    /// <summary>
-    /// Interaction logic for SettingsPopupView.xaml
-    /// </summary>
     public partial class SettingsPopupView : UserControl
     {
+        public event Action? OnResumeGame;
+        public event Action? OnAbout;
+        public event Action? OnExitToMenu;
+
         public SettingsPopupView()
         {
             InitializeComponent();
         }
+
+        private void Resume_Click(object sender, RoutedEventArgs e) => OnResumeGame?.Invoke();
+        private void About_Click(object sender, RoutedEventArgs e) => OnAbout?.Invoke();
+        private void ExitToMenu_Click(object sender, RoutedEventArgs e) => OnExitToMenu?.Invoke();
     }
 }

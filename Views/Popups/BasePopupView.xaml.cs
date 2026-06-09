@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -7,7 +7,6 @@ namespace ZooVillage.Views.Popups
 {
     public partial class BasePopupView : UserControl
     {
-        // Событие, которое сообщит GameView, что попап нужно скрыть
         public event Action OnCloseRequested;
 
         public BasePopupView()
@@ -15,13 +14,11 @@ namespace ZooVillage.Views.Popups
             InitializeComponent();
         }
 
-        // Метод для установки заголовка извне
         public void SetTitle(string title)
         {
             PopupTitle.Text = title;
         }
 
-        // Метод для подгрузки конкретного содержимого (Композиция!)
         public void SetContent(UserControl content)
         {
             PopupContent.Content = content;
@@ -34,16 +31,9 @@ namespace ZooVillage.Views.Popups
 
         private void Overlay_Click(object sender, MouseButtonEventArgs e)
         {
-            // Закрытие при клике на затемненный фон
-            OnCloseRequested?.Invoke();
-        }
-
-        // Простейшая реализация перетаскивания окна
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (ReferenceEquals(e.Source, sender))
             {
-                Window.GetWindow(this)?.DragMove();
+                OnCloseRequested?.Invoke();
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace ZooVillage.Models.Enums
 {
-    internal class GrowthStage
+    public enum GrowthStage
     {
         Baby,
         Young,
