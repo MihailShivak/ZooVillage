@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.37203.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooVillage", "ZooVillage.csproj", "{784C3158-54CA-FAFF-CDAA-AFFFEF873278}"
 EndProject
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FD25741D-8C1A-4D88-9CAF-2AF95DCF326F}
+		SolutionGuid = {76B9164B-AB8C-469A-97DE-A6C904B86743}
 	EndGlobalSection
 EndGlobal
