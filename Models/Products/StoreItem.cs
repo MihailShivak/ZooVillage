@@ -9,6 +9,7 @@ namespace ZooVillage.Models.Products
         private int _quantity;
 
         public string ItemName { get; set; } = string.Empty;
+        public string ImagePath { get; set; } = string.Empty;
         public override string Name => ItemName;
         public override int Price { get; set; }
         public int Available { get; set; }

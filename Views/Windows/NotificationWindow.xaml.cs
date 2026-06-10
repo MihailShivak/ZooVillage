@@ -26,6 +26,13 @@ namespace ZooVillage.Views.Windows
                 IconImage.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/Icons/6514954.png"));
             }
 
+            Loaded += (_, _) =>
+            {
+                var area = SystemParameters.WorkArea;
+                Left = (area.Width - Width) / 2;
+                Top = 40;
+            };
+
             var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
             timer.Tick += (s, e) => { timer.Stop(); Close(); };
             timer.Start();

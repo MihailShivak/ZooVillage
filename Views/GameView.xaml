@@ -10,7 +10,7 @@
         </Grid.RowDefinitions>
 
         <!-- Фон (растянут на всю сетку) -->
-        <Image Source="/Assets/Images/game_back.png" Stretch="UniformToFill"
+        <Image Source="/Assets/Images/game_back.png" Stretch="Fill"
                Grid.RowSpan="3"/>
 
         <!-- Верхняя панель: баланс -->
@@ -24,7 +24,7 @@
 
         <!-- Игровая зона -->
         <Grid Grid.Row="1">
-            <Border Background="#2ECC71" Margin="40" CornerRadius="15"
+            <Border Background="Transparent" Margin="724,664,664,598" CornerRadius="15"
                     BorderBrush="White" BorderThickness="2" Opacity="0.3">
                 <TextBlock Text="[Здесь будет сетка фермы и животные]"
                            Foreground="White" FontSize="32" FontWeight="Bold"
@@ -36,22 +36,27 @@
         <Border Grid.Row="2"
                 HorizontalAlignment="Center"
                 Margin="0,0,0,40"
-                Background="#CC000000"
+                Background="#656d4a"
+                BorderBrush="#414833"
+                BorderThickness="1"
+                Opacity="1"
                 CornerRadius="18"
-                Padding="20,12">
+                Padding="10px" 
+                Width="820px"
+                >
             <StackPanel Orientation="Horizontal">
 
-                <Button Width="64" Height="64" Background="Transparent" BorderThickness="0"
-                        Cursor="Hand" Margin="0,0,20,0" Click="StorageButton_Click">
+                <Button Width="64" Height="64" Opacity="1" Style="{StaticResource IconButton}"
+                        Cursor="Hand" Margin="294,0,20,0" Click="StorageButton_Click">
                     <Image Source="/Assets/Icons/home-button.png" Width="44" Height="44"/>
                 </Button>
 
-                <Button Width="64" Height="64" Background="Transparent" BorderThickness="0"
+                <Button Width="64" Height="64" Opacity="1" Style="{StaticResource IconButton}"
                         Cursor="Hand" Margin="0,0,20,0" Click="StoreButton_Click">
                     <Image Source="/Assets/Icons/basket_409126.png" Width="44" Height="44"/>
                 </Button>
 
-                <Button Width="64" Height="64" Background="Transparent" BorderThickness="0"
+                <Button Width="64" Height="64" Opacity="1" Style="{StaticResource IconButton}"
                         Cursor="Hand" Click="SettingsButton_Click">
                     <Image Source="/Assets/Icons/13147603.png" Width="44" Height="44"/>
                 </Button>

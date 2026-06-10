@@ -4,14 +4,14 @@
 
     <Grid>
         <!-- Фоновое изображение с блюром -->
-        <Image Source="/Assets/Images/game_back.png" Stretch="UniformToFill">
+        <Image Source="/Assets/Images/game_back.png" Stretch="Fill">
             <Image.Effect>
                 <BlurEffect Radius="12"/>
             </Image.Effect>
         </Image>
 
         <!-- Затемняющий оверлей -->
-        <Rectangle Fill="#000000" Opacity="0.55"/>
+        <Rectangle Fill="#000000" Opacity="0.20"/>
 
         <!-- Контент -->
         <Grid>
@@ -36,97 +36,19 @@
                         Margin="0,40,0,0">
 
                 <Button Content="ИГРАТЬ"
+                        Style="{StaticResource GhostButton}"
                         Width="280" Height="65" FontSize="26" FontWeight="Bold"
-                        Foreground="White" Cursor="Hand" Margin="0,0,0,20"
-                        Click="PlayButton_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="BorderBrush" Value="White"/>
-                            <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border x:Name="border"
-                                                Background="{TemplateBinding Background}"
-                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                BorderThickness="{TemplateBinding BorderThickness}"
-                                                CornerRadius="6">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="border" Property="Background" Value="#33FFFFFF"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                        Margin="0,0,0,20" Click="PlayButton_Click"/>
 
                 <Button Content="О ПРОЕКТЕ"
+                        Style="{StaticResource GhostButton}"
                         Width="280" Height="65" FontSize="26" FontWeight="Bold"
-                        Foreground="White" Cursor="Hand" Margin="0,0,0,20"
-                        Click="AboutButton_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="BorderBrush" Value="White"/>
-                            <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border x:Name="border"
-                                                Background="{TemplateBinding Background}"
-                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                BorderThickness="{TemplateBinding BorderThickness}"
-                                                CornerRadius="6">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="border" Property="Background" Value="#33FFFFFF"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                        Margin="0,0,0,20" Click="AboutButton_Click"/>
 
                 <Button Content="ВЫЙТИ"
+                        Style="{StaticResource GhostButton}"
                         Width="280" Height="65" FontSize="26" FontWeight="Bold"
-                        Foreground="White" Cursor="Hand"
-                        Click="ExitButton_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="BorderBrush" Value="White"/>
-                            <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border x:Name="border"
-                                                Background="{TemplateBinding Background}"
-                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                BorderThickness="{TemplateBinding BorderThickness}"
-                                                CornerRadius="6">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="border" Property="Background" Value="#33FFFFFF"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                        Click="ExitButton_Click"/>
 
             </StackPanel>
         </Grid>

@@ -11,7 +11,7 @@
         <!-- Вкладки -->
         <TabControl Grid.Row="0" x:Name="StoreTabControl" Background="#ECF0F1" BorderBrush="#95A5A6" BorderThickness="0,1,0,0">
             <!-- Вкладка КУПИТЬ -->
-            <TabItem Header="🛍️ Купить" Background="#3498DB" Foreground="White" FontSize="16" FontWeight="Bold">
+            <TabItem Header="Купить" Background="#3498DB" Foreground="White" FontSize="16" FontWeight="Bold">
                 <Grid Background="#ECF0F1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -32,7 +32,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Купить" Width="100" Height="35"
-                                                Background="#27AE60" Foreground="White"
+                                                Background="Transparent" Foreground="White"
                                                 BorderThickness="0" Cursor="Hand" FontWeight="Bold"
                                                 Click="BuyButton_Click" Tag="{Binding}"/>
                                     </DataTemplate>
@@ -51,7 +51,7 @@
             </TabItem>
 
             <!-- Вкладка ПРОДАТЬ -->
-            <TabItem Header="💸 Продать" Background="#E74C3C" Foreground="White" FontSize="16" FontWeight="Bold">
+            <TabItem Header="Продать" Background="Transparent" Foreground="White" FontSize="16" FontWeight="Bold">
                 <Grid Background="#ECF0F1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>

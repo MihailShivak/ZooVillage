@@ -36,3 +36,4 @@ E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\SettingsWindow.b
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\StoreWindow.baml
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\NotificationWindow.baml
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\NotificationWindow.g.cs
+E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\App.baml
