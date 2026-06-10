@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\
+D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\
 ZooVillage
 none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-E:\kubstu\OOP\ZooVillage\App.xaml
+D:\ООП\Мишин Олег\ZooVillage\App.xaml
 9-1276347113
 
-551049307561
-200-44685031
+58865386617
+200754226803
 MainWindow.xaml;Views\GameView.xaml;Views\MainView.xaml;Views\Popups\BasePopupView.xaml;Views\Popups\SettingsPopupView.xaml;Views\Popups\StorePopupView.xaml;Views\Windows\NotificationWindow.xaml;Views\Windows\SettingsWindow.xaml;Views\Windows\StoreWindow.xaml;
 
 False
