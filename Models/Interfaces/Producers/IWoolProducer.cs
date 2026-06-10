@@ -3,6 +3,5 @@
     public interface IWoolProducer
     {
         double WoolPerYear { get; }
-        void Shear();
     }
 }

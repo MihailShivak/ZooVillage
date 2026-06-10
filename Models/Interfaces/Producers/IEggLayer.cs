@@ -3,6 +3,5 @@
     public interface IEggLayer
     {
         int EggsPerWeek { get; }
-        void LayEgg();
     }
 }

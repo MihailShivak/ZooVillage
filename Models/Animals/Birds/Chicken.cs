@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media.Animation;
 using ZooVillage.Models.Base;
 using ZooVillage.Models.Enums;
 using ZooVillage.Models.Interfaces.Base;
