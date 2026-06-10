@@ -64,18 +64,14 @@ namespace ZooVillage.ViewModels
 
         private void InitializeAudio()
         {
-            System.Diagnostics.Debug.WriteLine("🎵 Инициализация аудиосистемы...");
-
             if (AudioManager.MusicLoaded)
             {
                 AudioManager.PlayBackgroundMusic();
-                Log += "\n🎵 Фоновая музыка загружена и запущена";
-                System.Diagnostics.Debug.WriteLine("✓ Музыка успешно запущена");
+                Log += "\nФоновая музыка загружена и запущена";
             }
             else
             {
-                Log += "\n⚠ Не удалось загрузить музыку. Проверьте наличие файла Assets/Sounds/mz.mp3";
-                System.Diagnostics.Debug.WriteLine("❌ Музыка не загружена");
+                Log += "\nМузыка не загружена. Проверьте наличие файла Assets/Sounds/mz.mp3";
             }
         }
 
@@ -164,7 +160,7 @@ namespace ZooVillage.ViewModels
                             juvenile.Parent.Children.Remove(animal);
                         }
                         Farm.Add(maturedAnimal);
-                        AddToLog($"🎂 {animal.Name} повзрослел и стал {maturedAnimal.GetType().Name}!");
+                        AddToLog($"{animal.Name} повзрослел и стал {maturedAnimal.GetType().Name}!");
                     }
                 }
             }
@@ -212,11 +208,11 @@ namespace ZooVillage.ViewModels
                 Budget -= price;
                 Farm.Add(animal);
                 AnimalVisuals.Add(new AnimalVisual(animal));
-                AddToLog($"💰 Куплено животное: {animal.Name} за {price:C}");
+                AddToLog($"Куплено животное: {animal.Name} за {price:C}");
             }
             else
             {
-                AddToLog($"❌ Недостаточно средств для покупки {animal.Name}");
+                AddToLog($"Недостаточно средств для покупки {animal.Name}");
             }
         }
 
@@ -264,19 +260,19 @@ namespace ZooVillage.ViewModels
             if (milkProduced > 0)
             {
                 Inventory["Молоко"] += milkProduced;
-                if (milkProduced > 0) AddToLog($"🥛 Произведено молока: +{milkProduced}л");
+                if (milkProduced > 0) AddToLog($"Произведено молока: +{milkProduced}л");
             }
 
             if (eggsProduced > 0)
             {
                 Inventory["Яйцо"] += eggsProduced;
-                if (eggsProduced > 0) AddToLog($"🥚 Снесено яиц: +{eggsProduced}шт");
+                if (eggsProduced > 0) AddToLog($"Снесено яиц: +{eggsProduced}шт");
             }
 
             if (woolProduced > 0)
             {
                 Inventory["Шерсть"] += woolProduced;
-                if (woolProduced > 0) AddToLog($"🧶 Произведено шерсти: +{woolProduced}кг");
+                if (woolProduced > 0) AddToLog($"Произведено шерсти: +{woolProduced}кг");
             }
 
             OnPropertyChanged(nameof(Inventory));

@@ -6,9 +6,7 @@ using System.Windows.Threading;
 
 namespace ZooVillage.Services
 {
-    /// <summary>
-    /// Менеджер для управления звуками и музыкой в приложении
-    /// </summary>
+    // Менеджер для управления звуками и музыкой в приложении
     public class AudioManager
     {
         private MediaPlayer _backgroundMusic;
@@ -47,7 +45,7 @@ namespace ZooVillage.Services
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"❌ Ошибка при создании AudioManager: {ex.Message}");
+                // Ошибка при инициализации - музыка будет недоступна
             }
         }
 
@@ -79,59 +77,41 @@ namespace ZooVillage.Services
                         _musicPath = new Uri(fullPath, UriKind.Absolute).ToString();
                         _backgroundMusic.Open(new Uri(_musicPath));
                         _musicLoaded = true;
-                        System.Diagnostics.Debug.WriteLine($"✓ Музыка загружена: {musicFile}");
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Debug.WriteLine($"❌ Ошибка открытия музыки: {ex.Message}");
+                        // Ошибка при открытии файла музыки
                     }
                 }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine($"⚠ Файл музыки не найден: {musicFile}");
-                }
+                // Если файл не найден, музыка просто не будет воспроизводиться
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"❌ Ошибка инициализации звука: {ex.Message}");
+                // Ошибка при инициализации аудиосистемы
             }
         }
 
-        /// <summary>
-        /// Запустить фоновую музыку (зацикленно)
-        /// </summary>
+        // Запустить фоновую музыку (зацикленно)
         public void PlayBackgroundMusic()
         {
             try
             {
-                if (_backgroundMusic == null)
-                {
-                    System.Diagnostics.Debug.WriteLine("⚠ AudioManager не инициализирован");
+                if (_backgroundMusic == null || !_musicLoaded)
                     return;
-                }
-
-                if (!_musicLoaded)
-                {
-                    System.Diagnostics.Debug.WriteLine("⚠ Музыка не загружена");
-                    return;
-                }
 
                 if (!_isMusicPlaying)
                 {
                     _backgroundMusic.Play();
                     _isMusicPlaying = true;
-                    System.Diagnostics.Debug.WriteLine("▶️ Фоновая музыка запущена");
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"❌ Ошибка при воспроизведении музыки: {ex.Message}");
+                // Ошибка при воспроизведении музыки
             }
         }
 
-        /// <summary>
-        /// Остановить музыку
-        /// </summary>
+        // Остановить музыку
         public void StopMusic()
         {
             try
@@ -140,18 +120,15 @@ namespace ZooVillage.Services
                 {
                     _backgroundMusic.Stop();
                     _isMusicPlaying = false;
-                    System.Diagnostics.Debug.WriteLine("⏹️ Музыка остановлена");
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"❌ Ошибка при остановке музыки: {ex.Message}");
+                // Ошибка при остановке музыки
             }
         }
 
-        /// <summary>
-        /// Переключить музыку (вкл/выкл)
-        /// </summary>
+        // Переключить музыку (вкл/выкл)
         public void ToggleMusic()
         {
             if (_isMusicPlaying)
@@ -160,9 +137,7 @@ namespace ZooVillage.Services
                 PlayBackgroundMusic();
         }
 
-        /// <summary>
-        /// Воспроизвести звуковой эффект один раз
-        /// </summary>
+        // Воспроизвести звуковой эффект один раз
         public void PlaySoundEffect(string soundFileName)
         {
             try
@@ -175,18 +150,15 @@ namespace ZooVillage.Services
                     soundPlayer.Volume = _volume;
                     soundPlayer.Open(new Uri(soundUri));
                     soundPlayer.Play();
-                    System.Diagnostics.Debug.WriteLine($"🔊 Звуковой эффект: {soundFileName}");
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"❌ Ошибка при воспроизведении звука '{soundFileName}': {ex.Message}");
+                // Ошибка при воспроизведении звука
             }
         }
 
-        /// <summary>
-        /// Очистить ресурсы
-        /// </summary>
+        // Очистить ресурсы
         public void Cleanup()
         {
             StopMusic();
