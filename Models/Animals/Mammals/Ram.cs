@@ -17,11 +17,6 @@ namespace ZooVillage.Models.Animals.Mammals
             WoolPerYear = 5.0;
         }
 
-        public void Shear()
-        {
-            Console.WriteLine($"{Name} острижен, получено {WoolPerYear} кг шерсти!");
-        }
-
         protected override double GetAgeMultiplier() =>
             Stage == GrowthStage.Young ? 1.3 : (Stage == GrowthStage.Old ? 0.6 : 1.0);
 

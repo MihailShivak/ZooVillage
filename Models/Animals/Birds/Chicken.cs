@@ -24,11 +24,6 @@ namespace ZooVillage.Models.Animals.Birds
             EggsPerWeek = 5;
         }
 
-        public void LayEgg()
-        {
-            Console.WriteLine($"{Name} снесла яйцо!");
-        }
-
         public IJuvenile GiveBirth(IBreeder father)
         {
             if (!CanBreed) return null;
