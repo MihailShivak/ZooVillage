@@ -5,7 +5,7 @@
         Width="400" Height="320"
         Background="Transparent">
 
-    <Border CornerRadius="15" Background="#656d4a" BorderBrush="#414833" BorderThickness="1">
+    <Border CornerRadius="15" Background="#2d3326" BorderBrush="#2d3326" BorderThickness="1">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -14,16 +14,9 @@
             </Grid.RowDefinitions>
 
             <!-- Кнопка закрытия -->
-            <Grid Grid.Row="0" Margin="10,8">
-                <Button Style="{StaticResource IconButton}"
-                        HorizontalAlignment="Right" Width="36" Height="36"
-                        Click="Close_Click">
-                    <Image Source="/Assets/Icons/7734272.png" Width="28" Height="28"/>
-                </Button>
-            </Grid>
 
             <!-- Кнопки -->
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,20,20" Background="#2d3326">
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#2d3326" Height="165">
                 <Button Content="Вернуться в игру"
                         Style="{StaticResource GhostButton}"
                         Width="300" Height="46" FontSize="13"

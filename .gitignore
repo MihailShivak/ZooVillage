@@ -1,6 +1,28 @@
+# Visual Studio cache and options
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+
+# Generated files
+*.cache
+*.g.i.cs
+*.AssemblyInfo.cs
+*.AssemblyInfoInputs.cache
+*.GeneratedMSBuildEditorConfig.editorconfig
+
+# Build folders
 bin/
 obj/
-.vs/
-*.user
-*.suo
+
+# IDE files
 .vs/

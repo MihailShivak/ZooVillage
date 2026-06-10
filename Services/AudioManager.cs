@@ -33,14 +33,21 @@ namespace ZooVillage.Services
 
         public AudioManager()
         {
-            // Убедимся, что инициализация происходит в UI потоке
-            if (Application.Current != null)
+            try
             {
-                Application.Current.Dispatcher.Invoke(InitializeAudio);
+                // Убедимся, что инициализация происходит в UI потоке
+                if (Application.Current?.Dispatcher != null)
+                {
+                    Application.Current.Dispatcher.Invoke(InitializeAudio);
+                }
+                else
+                {
+                    InitializeAudio();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                InitializeAudio();
+                System.Diagnostics.Debug.WriteLine($"❌ Ошибка при создании AudioManager: {ex.Message}");
             }
         }
 
@@ -48,64 +55,45 @@ namespace ZooVillage.Services
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine($"📂 Базовая директория: {AppDomain.CurrentDomain.BaseDirectory}");
-                System.Diagnostics.Debug.WriteLine($"📂 Ожидаемый путь: {SoundsPath}");
-
                 _backgroundMusic = new MediaPlayer();
                 _backgroundMusic.Volume = _volume;
 
                 // Подписываемся на событие завершения для зацикливания
                 _backgroundMusic.MediaEnded += (s, e) =>
                 {
-                    if (_isMusicPlaying)
+                    if (_isMusicPlaying && _backgroundMusic != null)
                     {
                         _backgroundMusic.Position = TimeSpan.Zero;
                         _backgroundMusic.Play();
-                        System.Diagnostics.Debug.WriteLine("🔄 Музыка перезапущена (зацикл)");
                     }
                 };
 
-                // Проверяем несколько возможных путей
-                var possiblePaths = new[]
-                {
-                    Path.Combine(SoundsPath, "mz.mp3"),
-                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Sounds", "mz.mp3"),
-                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin", "Debug", "net9.0-windows", "Assets", "Sounds", "mz.mp3"),
-                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin", "Release", "net9.0-windows", "Assets", "Sounds", "mz.mp3")
-                };
+                // Прямой путь к файлу музыки
+                var musicFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Sounds", "mz.mp3");
 
-                foreach (var path in possiblePaths)
+                if (File.Exists(musicFile))
                 {
-                    System.Diagnostics.Debug.WriteLine($"🔍 Проверка: {path} - {(File.Exists(path) ? "✓ найден" : "✗ не найден")}");
-
-                    if (File.Exists(path))
+                    try
                     {
-                        try
-                        {
-                            var fullPath = Path.GetFullPath(path);
-                            var fileInfo = new FileInfo(fullPath);
-                            System.Diagnostics.Debug.WriteLine($"   Размер: {fileInfo.Length / 1024} КБ");
-
-                            _musicPath = new Uri(fullPath, UriKind.Absolute).ToString();
-                            _backgroundMusic.Open(new Uri(_musicPath));
-                            _musicLoaded = true;
-
-                            System.Diagnostics.Debug.WriteLine($"✓ Музыка загружена из: {path}");
-                            System.Diagnostics.Debug.WriteLine($"✓ URI: {_musicPath}");
-                            return;
-                        }
-                        catch (Exception ex)
-                        {
-                            System.Diagnostics.Debug.WriteLine($"❌ Ошибка открытия файла {path}: {ex.Message}");
-                        }
+                        var fullPath = Path.GetFullPath(musicFile);
+                        _musicPath = new Uri(fullPath, UriKind.Absolute).ToString();
+                        _backgroundMusic.Open(new Uri(_musicPath));
+                        _musicLoaded = true;
+                        System.Diagnostics.Debug.WriteLine($"✓ Музыка загружена: {musicFile}");
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"❌ Ошибка открытия музыки: {ex.Message}");
                     }
                 }
-
-                System.Diagnostics.Debug.WriteLine($"⚠ Музыка не найдена ни в одном из проверяемых путей");
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"⚠ Файл музыки не найден: {musicFile}");
+                }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"❌ Ошибка при инициализации звука: {ex.Message}\n{ex.StackTrace}");
+                System.Diagnostics.Debug.WriteLine($"❌ Ошибка инициализации звука: {ex.Message}");
             }
         }
 

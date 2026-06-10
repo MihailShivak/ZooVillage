@@ -1,8 +1,13 @@
 <UserControl x:Class="ZooVillage.Views.GameView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ZooVillage.Views.Converters">
 
     <Grid>
+        <Grid.Resources>
+            <local:AnimalToImageConverter x:Key="AnimalToImageConverter"/>
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -18,18 +23,46 @@
                     HorizontalAlignment="Right" Margin="0,18,30,0">
             <Image Source="/Assets/Icons/coin.png" Width="32" Height="32"
                    VerticalAlignment="Center" Margin="0,0,8,0"/>
-            <TextBlock Text="1 500" FontSize="26" FontWeight="ExtraBold"
+            <TextBlock Text="{Binding Budget, StringFormat='{}{0}'}" FontSize="26" FontWeight="ExtraBold"
                        Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <!-- Игровая зона -->
-        <Grid Grid.Row="1">
-            <Border Background="Transparent" Margin="724,664,664,598" CornerRadius="15"
-                    BorderBrush="White" BorderThickness="2" Opacity="0.3">
-                <TextBlock Text="[Здесь будет сетка фермы и животные]"
-                           Foreground="White" FontSize="32" FontWeight="Bold"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
+        <!-- Игровая зона с животными -->
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Width="600" Height="600" Background="Transparent" CornerRadius="15"
+                    BorderBrush="Transparent" BorderThickness="2" Opacity="0.3"/>
+
+            <ItemsControl ItemsSource="{Binding AnimalVisuals}" IsHitTestVisible="False" Width="600" Height="600">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Background="Transparent" Width="600" Height="600"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <!-- Основная иконка животного -->
+                            <Image Source="{Binding Animal, Converter={StaticResource AnimalToImageConverter}}"
+                                   Width="80" Height="80"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+
+                            <!-- Иконка сердца при размножении -->
+                            <Image Source="/Assets/Icons/love.png"
+                                   Width="32" Height="32"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                                   Margin="4"
+                                   Visibility="{Binding IsBreeding, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+            </ItemsControl>
         </Grid>
 
         <!-- Нижняя панель с кнопками -->

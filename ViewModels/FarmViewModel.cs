@@ -8,17 +8,29 @@ using ZooVillage.Models.Animals.Birds;
 using ZooVillage.Models.Animals.Mammals;
 using ZooVillage.Models.Interfaces.Base;
 using ZooVillage.Services;
+using ZooVillage.Views.Models;
 
 namespace ZooVillage.ViewModels
 {
     public class FarmViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<IAnimal> Farm { get; } = new ObservableCollection<IAnimal>();
+        public ObservableCollection<AnimalVisual> AnimalVisuals { get; } = new ObservableCollection<AnimalVisual>();
         public BreedingService BreedingService { get; } = new BreedingService();
         public AudioManager AudioManager { get; } = new AudioManager();
 
+        // Инвентарь ресурсов
+        public Dictionary<string, int> Inventory { get; } = new Dictionary<string, int>
+        {
+            { "Яйцо", 15 },
+            { "Молоко", 8 },
+            { "Шерсть", 5 },
+            { "Зерно", 20 }
+        };
+
         private DispatcherTimer _simulationTimer;
         private DispatcherTimer _breedingTimer;
+        private DispatcherTimer _productionTimer;
 
         private double _budget;
         public double Budget
@@ -69,11 +81,24 @@ namespace ZooVillage.ViewModels
 
         private void InitializeFarm()
         {
-            Farm.Add(new Cow("Буренка"));
-            Farm.Add(new Bull("Бык"));
-            Farm.Add(new Ram("Бараш"));
-            Farm.Add(new Chicken("Ряба"));
-            Farm.Add(new Rooster("Петя"));
+            var cow = new Cow("Буренка");
+            var bull = new Bull("Бык");
+            var ram = new Ram("Бараш");
+            var chicken = new Chicken("Ряба");
+            var rooster = new Rooster("Петя");
+
+            Farm.Add(cow);
+            Farm.Add(bull);
+            Farm.Add(ram);
+            Farm.Add(chicken);
+            Farm.Add(rooster);
+
+            // Создаём визуальные модели
+            AnimalVisuals.Add(new AnimalVisual(cow));
+            AnimalVisuals.Add(new AnimalVisual(bull));
+            AnimalVisuals.Add(new AnimalVisual(ram));
+            AnimalVisuals.Add(new AnimalVisual(chicken));
+            AnimalVisuals.Add(new AnimalVisual(rooster));
 
             Log = " Ферма инициализирована. Запущена симуляция...\n";
         }
@@ -95,6 +120,14 @@ namespace ZooVillage.ViewModels
             };
             _breedingTimer.Tick += BreedingTimer_Tick;
             _breedingTimer.Start();
+
+            // Таймер производства сырья каждые 3 секунды
+            _productionTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(3)
+            };
+            _productionTimer.Tick += ProductionTimer_Tick;
+            _productionTimer.Start();
         }
 
         private void SimulationTimer_Tick(object sender, EventArgs e)
@@ -105,6 +138,11 @@ namespace ZooVillage.ViewModels
         private void BreedingTimer_Tick(object sender, EventArgs e)
         {
             AttemptBreeding();
+        }
+
+        private void ProductionTimer_Tick(object sender, EventArgs e)
+        {
+            ProduceResources();
         }
 
         public void PassOneDay()
@@ -139,7 +177,16 @@ namespace ZooVillage.ViewModels
             foreach (var newborn in newborns)
             {
                 Farm.Add(newborn);
+                AnimalVisuals.Add(new AnimalVisual(newborn));
                 AddToLog($" Родился новый житель фермы: {newborn.Name}!");
+
+                // Показываем сердечко у родителя (поищем по совпадению типа и пола)
+                var parent = Farm.FirstOrDefault(a => a != newborn && a.GetType().Name == newborn.GetType().Name);
+                if (parent != null)
+                {
+                    var parentVisual = AnimalVisuals.FirstOrDefault(v => v.Animal == parent);
+                    parentVisual?.ShowBreeding();
+                }
             }
 
             if (newborns.Count > 0)
@@ -164,6 +211,7 @@ namespace ZooVillage.ViewModels
             {
                 Budget -= price;
                 Farm.Add(animal);
+                AnimalVisuals.Add(new AnimalVisual(animal));
                 AddToLog($"💰 Куплено животное: {animal.Name} за {price:C}");
             }
             else
@@ -176,8 +224,62 @@ namespace ZooVillage.ViewModels
         {
             double price = animal.CalculateCurrentPrice();
             Budget += price;
+            var visual = AnimalVisuals.FirstOrDefault(v => v.Animal == animal);
+            if (visual != null)
+            {
+                visual.Stop();
+                AnimalVisuals.Remove(visual);
+            }
             Farm.Remove(animal);
             AddToLog($" Продано животное: {animal.Name} за {price:C}");
+        }
+
+        private void ProduceResources()
+        {
+            int milkProduced = 0;
+            int eggsProduced = 0;
+            int woolProduced = 0;
+
+            foreach (var animal in Farm)
+            {
+                // Коровы дают молоко
+                if (animal is Cow cow && cow.DailyMilkYield > 0)
+                {
+                    milkProduced += (int)cow.DailyMilkYield;
+                }
+                // Куры дают яйца
+                else if (animal is Chicken chicken && chicken.EggsPerWeek > 0)
+                {
+                    eggsProduced += chicken.EggsPerWeek / 7; // За 3 секунды (примерно 1 яйцо за несколько секунд)
+                }
+                // Бараны дают шерсть
+                else if (animal is Ram ram && ram.WoolPerYear > 0)
+                {
+                    woolProduced += (int)(ram.WoolPerYear / 120000); // За 3 секунды (примерно)
+                    if (woolProduced == 0) woolProduced = 1; // Минимум 1 единица
+                }
+            }
+
+            // Добавляем в инвентарь
+            if (milkProduced > 0)
+            {
+                Inventory["Молоко"] += milkProduced;
+                if (milkProduced > 0) AddToLog($"🥛 Произведено молока: +{milkProduced}л");
+            }
+
+            if (eggsProduced > 0)
+            {
+                Inventory["Яйцо"] += eggsProduced;
+                if (eggsProduced > 0) AddToLog($"🥚 Снесено яиц: +{eggsProduced}шт");
+            }
+
+            if (woolProduced > 0)
+            {
+                Inventory["Шерсть"] += woolProduced;
+                if (woolProduced > 0) AddToLog($"🧶 Произведено шерсти: +{woolProduced}кг");
+            }
+
+            OnPropertyChanged(nameof(Inventory));
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
