@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|d:\\\u043E\u043E\u043F\\\u043C\u0438\u0448\u0438\u043D \u043E\u043B\u0435\u0433\\zoovillage\\views\\gameview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|solutionrelative:views\\gameview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|d:\\\u043E\u043E\u043F\\\u043C\u0438\u0448\u0438\u043D \u043E\u043B\u0435\u0433\\zoovillage\\viewmodels\\farmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|solutionrelative:viewmodels\\farmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -33,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|d:\\\u043E\u043E\u043F\\\u043C\u0438\u0448\u0438\u043D \u043E\u043B\u0435\u0433\\zoovillage\\services\\breedingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|solutionrelative:services\\breedingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|d:\\\u043E\u043E\u043F\\\u043C\u0438\u0448\u0438\u043D \u043E\u043B\u0435\u0433\\zoovillage\\views\\gameview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|solutionrelative:views\\gameview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{784C3158-54CA-FAFF-CDAA-AFFFEF873278}|ZooVillage.csproj|d:\\\u043E\u043E\u043F\\\u043C\u0438\u0448\u0438\u043D \u043E\u043B\u0435\u0433\\zoovillage\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -186,22 +186,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "GameView.xaml",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Views\\GameView.xaml",
               "RelativeDocumentMoniker": "Views\\GameView.xaml",
               "ToolTip": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Views\\GameView.xaml",
               "RelativeToolTip": "Views\\GameView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-06-09T07:19:19.2Z"
+              "WhenOpened": "2026-06-09T07:19:19.2Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FarmViewModel.cs",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\ViewModels\\FarmViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\FarmViewModel.cs",
@@ -214,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "BreedingService.cs",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Services\\BreedingService.cs",
               "RelativeDocumentMoniker": "Services\\BreedingService.cs",
@@ -226,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Chick.cs",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Models\\Animals\\Birds\\Chick.cs",
               "RelativeDocumentMoniker": "Models\\Animals\\Birds\\Chick.cs",
@@ -238,7 +239,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Rooster.cs",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Models\\Animals\\Birds\\Rooster.cs",
               "RelativeDocumentMoniker": "Models\\Animals\\Birds\\Rooster.cs",
@@ -250,7 +251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Chicken.cs",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Models\\Animals\\Birds\\Chicken.cs",
               "RelativeDocumentMoniker": "Models\\Animals\\Birds\\Chicken.cs",
@@ -262,7 +263,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Lamb.cs",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Models\\Animals\\Mammals\\Lamb.cs",
               "RelativeDocumentMoniker": "Models\\Animals\\Mammals\\Lamb.cs",
@@ -274,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Kid.cs",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Models\\Animals\\Mammals\\Kid.cs",
               "RelativeDocumentMoniker": "Models\\Animals\\Mammals\\Kid.cs",
@@ -334,7 +335,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GrowthStage.cs",
               "DocumentMoniker": "D:\\\u041E\u041E\u041F\\\u041C\u0438\u0448\u0438\u043D \u041E\u043B\u0435\u0433\\ZooVillage\\Models\\Enums\\GrowthStage.cs",
               "RelativeDocumentMoniker": "Models\\Enums\\GrowthStage.cs",

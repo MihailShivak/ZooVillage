@@ -5,7 +5,7 @@ using ZooVillage.Models.Enums;
 
 namespace ZooVillage.Models.Interfaces.Base
 {
-    internal interface IAnimal
+    public interface IAnimal
     {
         Guid Id { get; }
         string Name { get; }
