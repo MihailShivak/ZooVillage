@@ -6,7 +6,10 @@ using System.Runtime.CompilerServices;
 using System.Windows.Threading;
 using ZooVillage.Models.Animals.Birds;
 using ZooVillage.Models.Animals.Mammals;
+<<<<<<< HEAD
 using ZooVillage.Models.Enums;
+=======
+>>>>>>> 6fd75df9a0d0030ab360395fbae181d13d637ff4
 using ZooVillage.Models.Interfaces.Base;
 using ZooVillage.Services;
 
@@ -53,7 +56,10 @@ namespace ZooVillage.ViewModels
         {
             Farm.Add(new Cow("Буренка"));
             Farm.Add(new Bull("Бык"));
+<<<<<<< HEAD
             Farm.Add(new Goat("Заря", Gender.Female));
+=======
+>>>>>>> 6fd75df9a0d0030ab360395fbae181d13d637ff4
             Farm.Add(new Ram("Бараш"));
             Farm.Add(new Chicken("Ряба"));
             Farm.Add(new Rooster("Петя"));
