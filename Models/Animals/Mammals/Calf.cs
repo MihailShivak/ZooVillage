@@ -1,4 +1,3 @@
-﻿using System;
 using ZooVillage.Models.Base;
 using ZooVillage.Models.Enums;
 using ZooVillage.Models.Interfaces.Base;
@@ -6,37 +5,24 @@ using ZooVillage.Models.Interfaces.Specific;
 
 namespace ZooVillage.Models.Animals.Mammals
 {
-    public class Calf : Mammal, ICalf
+    public class Calf : Mammal, IJuvenile, ICalf
     {
-        public IAnimal Parent { get; }
-        public int DaysSinceBirth => AgeInDays;
+        public int DaysOld { get; private set; }
+        public string Species => "Calf";
 
-        public Calf(string name, Gender gender, IAnimal parent)
-            : base(name, gender, 5000, 0)
+        public Calf(string name, Gender gender, IAnimal mother, int age = 0)
+            : base(name, gender, 15000, age)
         {
-            Parent = parent;
+            DaysOld = age;
         }
-
-        protected override double GetAgeMultiplier() => 1.5;
 
         public override IAnimal TryMature()
         {
-            if (AgeInDays >= 365)
-            {
-                if (Gender == Gender.Female)
-                {
-                    var cow = new Cow(this.Name, this.AgeInDays);
-                    cow.HealthInfo.HealthPoints = this.HealthInfo.HealthPoints;
-                    return cow;
-                }
-                else
-                {
-                    var bull = new Bull(this.Name, this.AgeInDays);
-                    bull.HealthInfo.HealthPoints = this.HealthInfo.HealthPoints;
-                    return bull;
-                }
-            }
+            if (DaysOld >= 365)
+                return new Cow(Name);
             return null;
         }
+
+        protected override double GetAgeMultiplier() => 0.8;
     }
 }
