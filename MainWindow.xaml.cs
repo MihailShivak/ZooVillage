@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Windows;
 using ZooVillage.Views;
+using ZooVillage.ViewModels;
 
 namespace ZooVillage
 {
     public partial class MainWindow : Window
     {
+        private FarmViewModel _farmViewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            _farmViewModel = new FarmViewModel();
             ShowMainMenu();
         }
 
@@ -19,7 +23,7 @@ namespace ZooVillage
 
         public void ShowGame()
         {
-            MainContent.Content = new GameView(this);
+            MainContent.Content = new GameView(this, _farmViewModel);
         }
 
         public void ExitGame()
