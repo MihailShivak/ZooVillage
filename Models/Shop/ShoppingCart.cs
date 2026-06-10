@@ -56,23 +56,44 @@ namespace ZooVillage.Models.Shop
         // ==========================================
 
         /// <summary>
-        /// Оператор сложения: объединение двух корзин
+        /// Оператор сложения: объединение двух корзин (суммирует количество одинаковых товаров)
         /// ShoppingCart + ShoppingCart = ShoppingCart
         /// </summary>
         public static ShoppingCart operator +(ShoppingCart left, ShoppingCart right)
         {
             var result = new ShoppingCart();
+            var itemDict = new Dictionary<string, ShopItem>();
 
-            // Добавляем все товары из левой корзины
+            // Добавляем товары из левой корзины
             foreach (var item in left._items)
             {
-                result.AddItem(item);
+                if (itemDict.ContainsKey(item.Name))
+                {
+                    itemDict[item.Name] = itemDict[item.Name] + item.Quantity;
+                }
+                else
+                {
+                    itemDict[item.Name] = item + 0; // Копируем товар
+                }
             }
 
-            // Добавляем все товары из правой корзины
+            // Добавляем товары из правой корзины
             foreach (var item in right._items)
             {
-                result.AddItem(item);
+                if (itemDict.ContainsKey(item.Name))
+                {
+                    itemDict[item.Name] = itemDict[item.Name] + item.Quantity;
+                }
+                else
+                {
+                    itemDict[item.Name] = item + 0;
+                }
+            }
+
+            // Добавляем все товары в результирующую корзину
+            foreach (var item in itemDict.Values)
+            {
+                result._items.Add(item);
             }
 
             return result;
@@ -96,8 +117,8 @@ namespace ZooVillage.Models.Shop
         /// </summary>
         public decimal GetTotalPrice()
         {
-            // Используем перегрузку оператора *
-            return _items.Sum(item => item * item.Quantity);
+            // Используем перегрузку оператора * для каждого товара
+            return _items.Sum(item => (decimal)item);
         }
 
         /// <summary>

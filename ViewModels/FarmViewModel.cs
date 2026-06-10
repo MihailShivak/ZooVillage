@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Windows.Threading;
 using ZooVillage.Models.Animals.Birds;
 using ZooVillage.Models.Animals.Mammals;
-using ZooVillage.Models.Enums;
 using ZooVillage.Models.Interfaces.Base;
 using ZooVillage.Services;
 
@@ -16,6 +15,7 @@ namespace ZooVillage.ViewModels
     {
         public ObservableCollection<IAnimal> Farm { get; } = new ObservableCollection<IAnimal>();
         public BreedingService BreedingService { get; } = new BreedingService();
+        public AudioManager AudioManager { get; } = new AudioManager();
 
         private DispatcherTimer _simulationTimer;
         private DispatcherTimer _breedingTimer;
@@ -47,13 +47,13 @@ namespace ZooVillage.ViewModels
             Budget = 200000;
             InitializeFarm();
             InitializeTimers();
+            AudioManager.PlayBackgroundMusic();
         }
 
         private void InitializeFarm()
         {
             Farm.Add(new Cow("Буренка"));
             Farm.Add(new Bull("Бык"));
-            Farm.Add(new Goat("Заря", Gender.Female));
             Farm.Add(new Ram("Бараш"));
             Farm.Add(new Chicken("Ряба"));
             Farm.Add(new Rooster("Петя"));

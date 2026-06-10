@@ -40,23 +40,47 @@ namespace ZooVillage.Models.Shop
         // ==========================================
 
         /// <summary>
-        /// Оператор + : объединение цен
+        /// Оператор + : получение цены товара на покупку
         /// </summary>
         public static decimal operator +(ShopLogic shop, string itemName)
         {
-            if (shop._buyPrices.ContainsKey(itemName))
-                return shop._buyPrices[itemName];
-            if (shop._sellPrices.ContainsKey(itemName))
-                return shop._sellPrices[itemName];
-            return 0;
+            return shop.GetBuyPrice(itemName);
         }
 
         /// <summary>
-        /// Оператор * : расчет стоимости с учетом количества
+        /// Оператор - : получение цены товара на продажу
+        /// </summary>
+        public static decimal operator -(ShopLogic shop, string itemName)
+        {
+            return shop.GetSellPrice(itemName);
+        }
+
+        /// <summary>
+        /// Оператор * : расчет стоимости товара с учетом количества
         /// </summary>
         public static decimal operator *(ShopLogic shop, ShopItem item)
         {
             return item.Price * item.Quantity;
+        }
+
+        // ==========================================
+        // ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ
+        // ==========================================
+
+        /// <summary>
+        /// Получить цену товара на покупку
+        /// </summary>
+        public decimal GetBuyPrice(string itemName)
+        {
+            return _buyPrices.ContainsKey(itemName) ? _buyPrices[itemName] : 0;
+        }
+
+        /// <summary>
+        /// Получить цену товара на продажу
+        /// </summary>
+        public decimal GetSellPrice(string itemName)
+        {
+            return _sellPrices.ContainsKey(itemName) ? _sellPrices[itemName] : 0;
         }
 
         // ==========================================
