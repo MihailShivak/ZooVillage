@@ -22,6 +22,8 @@ namespace ZooVillage.Views
         private void StoreButton_Click(object sender, RoutedEventArgs e)
         {
             var storeWindow = new StoreWindow();
+            storeWindow.OnPurchaseSuccess += msg => NotificationWindow.Show(msg, NotificationType.Success);
+            storeWindow.OnInsufficientFunds += msg => NotificationWindow.Show(msg, NotificationType.Error);
             storeWindow.ShowDialog();
         }
 

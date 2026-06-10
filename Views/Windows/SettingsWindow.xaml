@@ -5,26 +5,43 @@
         Width="400" Height="340"
         Background="Transparent">
 
-    <Border Background="#2C3E50" CornerRadius="15"
-            BorderBrush="#34495E" BorderThickness="1">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-            <TextBlock Text="⚙️ НАСТРОЙКИ" Foreground="#F1C40F" FontSize="28" FontWeight="Bold"
-                       HorizontalAlignment="Center" Margin="0,0,0,30"/>
+    <Border CornerRadius="15" BorderBrush="#8B6343" BorderThickness="1">
+        <Border.Background>
+            <ImageBrush ImageSource="/Assets/Images/back.png" Stretch="UniformToFill"/>
+        </Border.Background>
 
-            <Button x:Name="ResumeButton" Content="Вернуться в игру"
-                    Width="300" Height="50" FontSize="18"
-                    Background="#27AE60" Foreground="White" BorderThickness="0" Cursor="Hand"
-                    Margin="0,0,0,15" Click="Resume_Click"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <Button x:Name="AboutButton" Content="О проекте"
-                    Width="300" Height="50" FontSize="18"
-                    Background="#2980B9" Foreground="White" BorderThickness="0" Cursor="Hand"
-                    Margin="0,0,0,15" Click="About_Click"/>
+            <!-- Кнопка закрытия -->
+            <Grid Grid.Row="0" Margin="10,8">
+                <Button Background="Transparent" BorderThickness="0"
+                        HorizontalAlignment="Right" Width="36" Height="36"
+                        Cursor="Hand" Click="Close_Click">
+                    <Image Source="/Assets/Icons/7734272.png" Width="28" Height="28"/>
+                </Button>
+            </Grid>
 
-            <Button x:Name="ExitButton" Content="Выход в главное меню"
-                    Width="300" Height="50" FontSize="18"
-                    Background="#C0392B" Foreground="White" BorderThickness="0" Cursor="Hand"
-                    Click="ExitToMenu_Click"/>
-        </StackPanel>
+            <!-- Кнопки -->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,20,20">
+                <Button Content="Вернуться в игру"
+                        Width="300" Height="50" FontSize="17"
+                        Background="#27AE60" Foreground="White" BorderThickness="0" Cursor="Hand"
+                        Margin="0,0,0,14" Click="Resume_Click"/>
+
+                <Button Content="О проекте"
+                        Width="300" Height="50" FontSize="17"
+                        Background="#2980B9" Foreground="White" BorderThickness="0" Cursor="Hand"
+                        Margin="0,0,0,14" Click="About_Click"/>
+
+                <Button Content="Выход в главное меню"
+                        Width="300" Height="50" FontSize="17"
+                        Background="#C0392B" Foreground="White" BorderThickness="0" Cursor="Hand"
+                        Click="ExitToMenu_Click"/>
+            </StackPanel>
+        </Grid>
     </Border>
 </windows:BaseWindow>

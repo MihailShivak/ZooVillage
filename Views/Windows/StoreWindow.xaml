@@ -5,90 +5,80 @@
         Width="700" Height="580"
         Background="Transparent">
 
-    <Border Background="#ECF0F1" CornerRadius="15"
-            BorderBrush="#95A5A6" BorderThickness="1">
+    <Border CornerRadius="15" BorderBrush="#8B6343" BorderThickness="1">
+        <Border.Background>
+            <ImageBrush ImageSource="/Assets/Images/back.png" Stretch="UniformToFill"/>
+        </Border.Background>
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Заголовок -->
-            <Border Grid.Row="0" Background="#2C3E50" CornerRadius="15,15,0,0" Padding="20,12">
-                <Grid>
-                    <TextBlock Text="🛒 МАГАЗИН" Foreground="#F1C40F" FontSize="24" FontWeight="Bold"
-                               VerticalAlignment="Center"/>
-                    <Button Content="✕" Width="40" Height="40" FontSize="20"
-                            Background="Transparent" Foreground="White" BorderThickness="0"
-                            HorizontalAlignment="Right" VerticalAlignment="Center"
-                            Cursor="Hand" Click="CloseButton_Click"/>
-                </Grid>
-            </Border>
+            <!-- Шапка: только кнопка закрытия -->
+            <Grid Grid.Row="0" Margin="12,8">
+                <Button Background="Transparent" BorderThickness="0"
+                        HorizontalAlignment="Right" Width="36" Height="36"
+                        Cursor="Hand" Click="CloseButton_Click">
+                    <Image Source="/Assets/Icons/7734272.png" Width="28" Height="28"/>
+                </Button>
+            </Grid>
 
             <!-- Вкладки -->
-            <TabControl Grid.Row="1" Background="#ECF0F1" BorderThickness="0">
+            <TabControl Grid.Row="1" Background="Transparent" BorderThickness="0" Margin="12,0,12,12">
 
                 <!-- ===== КУПИТЬ ===== -->
                 <TabItem Header="🛍️ Купить" FontSize="16" FontWeight="Bold">
-                    <Grid Margin="20">
+                    <Grid Margin="8">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <!-- Шапка таблицы -->
                         <Grid Grid.Row="0" Margin="0,0,0,6">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="120"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Товар" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D"/>
-                            <TextBlock Grid.Column="1" Text="Кол-во" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
-                            <TextBlock Grid.Column="2" Text="Цена" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="0" Text="Товар" FontWeight="Bold" FontSize="13" Foreground="#5D4037"/>
+                            <TextBlock Grid.Column="1" Text="Кол-во" FontWeight="Bold" FontSize="13" Foreground="#5D4037" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="Цена" FontWeight="Bold" FontSize="13" Foreground="#5D4037" HorizontalAlignment="Center"/>
                         </Grid>
 
-                        <!-- Список товаров -->
                         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                             <ItemsControl x:Name="BuyList">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="White" CornerRadius="8" Margin="0,4"
-                                                BorderBrush="#D5D8DC" BorderThickness="1" Padding="12,10">
+                                        <Border Background="#CCF5ECD7" CornerRadius="8" Margin="0,3"
+                                                BorderBrush="#C8A97E" BorderThickness="1" Padding="12,8">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="120"/>
                                                     <ColumnDefinition Width="100"/>
                                                 </Grid.ColumnDefinitions>
-
-                                                <!-- Название -->
                                                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                                    <TextBlock Text="{Binding ItemName}" FontSize="16" FontWeight="SemiBold"/>
+                                                    <TextBlock Text="{Binding ItemName}" FontSize="15" FontWeight="SemiBold" Foreground="#3E2723"/>
                                                     <TextBlock Text="{Binding Price, StringFormat='{}Цена: {0} руб.'}"
-                                                               FontSize="12" Foreground="#7F8C8D"/>
+                                                               FontSize="11" Foreground="#795548"/>
                                                 </StackPanel>
-
-                                                <!-- +/- и счётчик -->
                                                 <StackPanel Grid.Column="1" Orientation="Horizontal"
                                                             HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                    <Button Content="−" Width="32" Height="32" FontSize="18"
-                                                            Background="#E74C3C" Foreground="White" BorderThickness="0"
-                                                            Cursor="Hand" Tag="{Binding}"
-                                                            Click="BuyMinus_Click"/>
-                                                    <TextBlock Text="{Binding Quantity}" FontSize="16" FontWeight="Bold"
-                                                               Width="36" TextAlignment="Center" VerticalAlignment="Center"/>
-                                                    <Button Content="+" Width="32" Height="32" FontSize="18"
+                                                    <Button Content="−" Width="30" Height="30" FontSize="17"
+                                                            Background="#C0392B" Foreground="White" BorderThickness="0"
+                                                            Cursor="Hand" Tag="{Binding}" Click="BuyMinus_Click"/>
+                                                    <TextBlock Text="{Binding Quantity}" FontSize="15" FontWeight="Bold"
+                                                               Width="34" TextAlignment="Center" VerticalAlignment="Center" Foreground="#3E2723"/>
+                                                    <Button Content="+" Width="30" Height="30" FontSize="17"
                                                             Background="#27AE60" Foreground="White" BorderThickness="0"
-                                                            Cursor="Hand" Tag="{Binding}"
-                                                            Click="BuyPlus_Click"/>
+                                                            Cursor="Hand" Tag="{Binding}" Click="BuyPlus_Click"/>
                                                 </StackPanel>
-
-                                                <!-- Итог по позиции -->
                                                 <TextBlock Grid.Column="2"
                                                            Text="{Binding Quantity, StringFormat='{}{0} шт.'}"
-                                                           FontSize="14" FontWeight="Bold" Foreground="#2C3E50"
+                                                           FontSize="13" FontWeight="Bold" Foreground="#5D4037"
                                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
@@ -97,18 +87,16 @@
                             </ItemsControl>
                         </ScrollViewer>
 
-                        <!-- Итог + кнопка Купить -->
-                        <Border Grid.Row="2" Background="#2C3E50" CornerRadius="10" Padding="16,12" Margin="0,10,0,0">
+                        <Border Grid.Row="2" Background="#CC5D4037" CornerRadius="10" Padding="14,10" Margin="0,8,0,0">
                             <Grid>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="Итого: " Foreground="White" FontSize="16"/>
+                                    <TextBlock Text="Итого: " Foreground="White" FontSize="15"/>
                                     <TextBlock x:Name="BuyTotalText" Text="0 руб."
-                                               Foreground="#F1C40F" FontSize="16" FontWeight="Bold"/>
+                                               Foreground="#F1C40F" FontSize="15" FontWeight="Bold"/>
                                 </StackPanel>
-                                <Button Content="✅ Купить" Width="140" Height="44" FontSize="16" FontWeight="Bold"
+                                <Button Content="✅ Купить" Width="130" Height="42" FontSize="15" FontWeight="Bold"
                                         Background="#27AE60" Foreground="White" BorderThickness="0"
-                                        HorizontalAlignment="Right" Cursor="Hand"
-                                        Click="BuyConfirm_Click"/>
+                                        HorizontalAlignment="Right" Cursor="Hand" Click="BuyConfirm_Click"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -116,65 +104,55 @@
 
                 <!-- ===== ПРОДАТЬ ===== -->
                 <TabItem Header="💸 Продать" FontSize="16" FontWeight="Bold">
-                    <Grid Margin="20">
+                    <Grid Margin="8">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <!-- Шапка таблицы -->
                         <Grid Grid.Row="0" Margin="0,0,0,6">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="120"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Товар" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D"/>
-                            <TextBlock Grid.Column="1" Text="Кол-во" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
-                            <TextBlock Grid.Column="2" Text="Есть" FontWeight="Bold" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="0" Text="Товар" FontWeight="Bold" FontSize="13" Foreground="#5D4037"/>
+                            <TextBlock Grid.Column="1" Text="Кол-во" FontWeight="Bold" FontSize="13" Foreground="#5D4037" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="Есть" FontWeight="Bold" FontSize="13" Foreground="#5D4037" HorizontalAlignment="Center"/>
                         </Grid>
 
-                        <!-- Список товаров -->
                         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                             <ItemsControl x:Name="SellList">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="White" CornerRadius="8" Margin="0,4"
-                                                BorderBrush="#D5D8DC" BorderThickness="1" Padding="12,10">
+                                        <Border Background="#CCF5ECD7" CornerRadius="8" Margin="0,3"
+                                                BorderBrush="#C8A97E" BorderThickness="1" Padding="12,8">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="120"/>
                                                     <ColumnDefinition Width="100"/>
                                                 </Grid.ColumnDefinitions>
-
-                                                <!-- Название -->
                                                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                                    <TextBlock Text="{Binding ItemName}" FontSize="16" FontWeight="SemiBold"/>
+                                                    <TextBlock Text="{Binding ItemName}" FontSize="15" FontWeight="SemiBold" Foreground="#3E2723"/>
                                                     <TextBlock Text="{Binding SellPrice, StringFormat='{}Цена: {0} руб.'}"
-                                                               FontSize="12" Foreground="#7F8C8D"/>
+                                                               FontSize="11" Foreground="#795548"/>
                                                 </StackPanel>
-
-                                                <!-- +/- и счётчик -->
                                                 <StackPanel Grid.Column="1" Orientation="Horizontal"
                                                             HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                    <Button Content="−" Width="32" Height="32" FontSize="18"
-                                                            Background="#E74C3C" Foreground="White" BorderThickness="0"
-                                                            Cursor="Hand" Tag="{Binding}"
-                                                            Click="SellMinus_Click"/>
-                                                    <TextBlock Text="{Binding Quantity}" FontSize="16" FontWeight="Bold"
-                                                               Width="36" TextAlignment="Center" VerticalAlignment="Center"/>
-                                                    <Button Content="+" Width="32" Height="32" FontSize="18"
+                                                    <Button Content="−" Width="30" Height="30" FontSize="17"
+                                                            Background="#C0392B" Foreground="White" BorderThickness="0"
+                                                            Cursor="Hand" Tag="{Binding}" Click="SellMinus_Click"/>
+                                                    <TextBlock Text="{Binding Quantity}" FontSize="15" FontWeight="Bold"
+                                                               Width="34" TextAlignment="Center" VerticalAlignment="Center" Foreground="#3E2723"/>
+                                                    <Button Content="+" Width="30" Height="30" FontSize="17"
                                                             Background="#27AE60" Foreground="White" BorderThickness="0"
-                                                            Cursor="Hand" Tag="{Binding}"
-                                                            Click="SellPlus_Click"/>
+                                                            Cursor="Hand" Tag="{Binding}" Click="SellPlus_Click"/>
                                                 </StackPanel>
-
-                                                <!-- Есть в наличии -->
                                                 <TextBlock Grid.Column="2"
                                                            Text="{Binding OwnCount, StringFormat='{}{0} шт.'}"
-                                                           FontSize="14" Foreground="#7F8C8D"
+                                                           FontSize="13" Foreground="#795548"
                                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
@@ -183,18 +161,16 @@
                             </ItemsControl>
                         </ScrollViewer>
 
-                        <!-- Итог + кнопка Продать -->
-                        <Border Grid.Row="2" Background="#2C3E50" CornerRadius="10" Padding="16,12" Margin="0,10,0,0">
+                        <Border Grid.Row="2" Background="#CC5D4037" CornerRadius="10" Padding="14,10" Margin="0,8,0,0">
                             <Grid>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="Итого: " Foreground="White" FontSize="16"/>
+                                    <TextBlock Text="Итого: " Foreground="White" FontSize="15"/>
                                     <TextBlock x:Name="SellTotalText" Text="0 руб."
-                                               Foreground="#F1C40F" FontSize="16" FontWeight="Bold"/>
+                                               Foreground="#F1C40F" FontSize="15" FontWeight="Bold"/>
                                 </StackPanel>
-                                <Button Content="💰 Продать" Width="140" Height="44" FontSize="16" FontWeight="Bold"
+                                <Button Content="💰 Продать" Width="130" Height="42" FontSize="15" FontWeight="Bold"
                                         Background="#C0392B" Foreground="White" BorderThickness="0"
-                                        HorizontalAlignment="Right" Cursor="Hand"
-                                        Click="SellConfirm_Click"/>
+                                        HorizontalAlignment="Right" Cursor="Hand" Click="SellConfirm_Click"/>
                             </Grid>
                         </Border>
                     </Grid>

@@ -14,10 +14,7 @@ namespace ZooVillage.Views.Windows
             Title = WindowTitle;
         }
 
-        private void Resume_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        private void Resume_Click(object sender, RoutedEventArgs e) => Close();
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
@@ -30,5 +27,7 @@ namespace ZooVillage.Views.Windows
             OnExitToMenu?.Invoke();
             Close();
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e) => Close();
     }
 }

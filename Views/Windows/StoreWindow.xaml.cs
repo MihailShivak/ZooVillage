@@ -9,6 +9,9 @@ namespace ZooVillage.Views.Windows
     {
         public override string WindowTitle => "Магазин";
 
+        public event Action<string>? OnPurchaseSuccess;
+        public event Action<string>? OnInsufficientFunds;
+
         private readonly StoreItemCollection _buyItems = new();
         private readonly StoreItemCollection _sellItems = new();
 
@@ -23,7 +26,6 @@ namespace ZooVillage.Views.Windows
         {
             _buyItems.Add(new StoreItem { ItemName = "🐔 Курица", Price = 100, Available = 5 });
             _buyItems.Add(new StoreItem { ItemName = "🐑 Овца",   Price = 150, Available = 3 });
-            _buyItems.Add(new StoreItem { ItemName = "🐐 Коза",   Price = 120, Available = 4 });
             _buyItems.Add(new StoreItem { ItemName = "🐄 Корова", Price = 300, Available = 2 });
             _buyItems.Add(new StoreItem { ItemName = "🐏 Баран",  Price = 180, Available = 1 });
 
@@ -36,98 +38,61 @@ namespace ZooVillage.Views.Windows
             SellList.ItemsSource = _sellItems;
         }
 
-        // ───── Покупка: +/- через перегрузку операторов ─────
-
         private void BuyPlus_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button { Tag: StoreItem item })
-            {
-                item++;          // вызов operator++
-                UpdateBuyTotal();
-            }
+            if (sender is Button { Tag: StoreItem item }) { item++; UpdateBuyTotal(); }
         }
 
         private void BuyMinus_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button { Tag: StoreItem item })
-            {
-                item--;          // вызов operator--
-                UpdateBuyTotal();
-            }
+            if (sender is Button { Tag: StoreItem item }) { item--; UpdateBuyTotal(); }
         }
 
         private void UpdateBuyTotal()
         {
             int total = 0;
-            foreach (var item in _buyItems)
-                total += item.Price * item.Quantity;
+            foreach (var item in _buyItems) total += item.Price * item.Quantity;
             BuyTotalText.Text = $"{total} руб.";
         }
 
         private void BuyConfirm_Click(object sender, RoutedEventArgs e)
         {
             int total = 0;
-            var lines = new System.Text.StringBuilder();
-            foreach (var item in _buyItems)
-            {
-                if (item.Quantity > 0)
-                {
-                    lines.AppendLine($"{item.ItemName}  ×{item.Quantity}  = {item.Price * item.Quantity} руб.");
-                    total += item.Price * item.Quantity;
-                }
-            }
+            foreach (var item in _buyItems) total += item.Price * item.Quantity;
 
-            if (total == 0) { MessageBox.Show("Выберите товар.", "Покупка"); return; }
+            if (total == 0) { OnInsufficientFunds?.Invoke("Выберите товар!"); return; }
 
-            MessageBox.Show($"{lines}\nИтого: {total} руб.", "Подтверждение покупки",
-                            MessageBoxButton.OK, MessageBoxImage.Information);
+            // TODO: проверка баланса игрока
+            OnPurchaseSuccess?.Invoke("Успешная покупка!");
+            Close();
         }
-
-        // ───── Продажа: +/- через перегрузку операторов ─────
 
         private void SellPlus_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button { Tag: StoreItem item })
-            {
-                item++;
-                UpdateSellTotal();
-            }
+            if (sender is Button { Tag: StoreItem item }) { item++; UpdateSellTotal(); }
         }
 
         private void SellMinus_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button { Tag: StoreItem item })
-            {
-                item--;
-                UpdateSellTotal();
-            }
+            if (sender is Button { Tag: StoreItem item }) { item--; UpdateSellTotal(); }
         }
 
         private void UpdateSellTotal()
         {
             int total = 0;
-            foreach (var item in _sellItems)
-                total += item.SellPrice * item.Quantity;
+            foreach (var item in _sellItems) total += item.SellPrice * item.Quantity;
             SellTotalText.Text = $"{total} руб.";
         }
 
         private void SellConfirm_Click(object sender, RoutedEventArgs e)
         {
             int total = 0;
-            var lines = new System.Text.StringBuilder();
-            foreach (var item in _sellItems)
-            {
-                if (item.Quantity > 0)
-                {
-                    lines.AppendLine($"{item.ItemName}  ×{item.Quantity}  = {item.SellPrice * item.Quantity} руб.");
-                    total += item.SellPrice * item.Quantity;
-                }
-            }
+            foreach (var item in _sellItems) total += item.SellPrice * item.Quantity;
 
-            if (total == 0) { MessageBox.Show("Выберите товар.", "Продажа"); return; }
+            if (total == 0) { OnInsufficientFunds?.Invoke("Выберите товар!"); return; }
 
-            MessageBox.Show($"{lines}\nИтого: {total} руб.", "Подтверждение продажи",
-                            MessageBoxButton.OK, MessageBoxImage.Information);
+            OnPurchaseSuccess?.Invoke("Продажа выполнена!");
+            Close();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
