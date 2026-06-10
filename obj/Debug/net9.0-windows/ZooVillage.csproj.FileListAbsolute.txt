@@ -6,15 +6,9 @@ E:\kubstu\OOP\ZooVillage\bin\Debug\net9.0-windows\ZooVillage.pdb
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\MainWindow.baml
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\GameView.baml
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\MainView.baml
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\BasePopupView.baml
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\SettingsPopupView.baml
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\StorePopupView.baml
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\MainWindow.g.cs
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\GameView.g.cs
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\MainView.g.cs
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\BasePopupView.g.cs
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\SettingsPopupView.g.cs
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\StorePopupView.g.cs
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\App.g.cs
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\ZooVillage_MarkupCompile.cache
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\ZooVillage.g.resources
@@ -28,36 +22,3 @@ E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\refint\ZooVillage.dll
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\ZooVillage.pdb
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\ZooVillage.genruntimeconfig.cache
 E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\ref\ZooVillage.dll
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\GeneratedInternalTypeHelper.g.cs
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\ZooVillage_MarkupCompile.lref
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\SettingsWindow.g.cs
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\StoreWindow.g.cs
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\SettingsWindow.baml
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\StoreWindow.baml
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\NotificationWindow.baml
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\NotificationWindow.g.cs
-E:\kubstu\OOP\ZooVillage\obj\Debug\net9.0-windows\App.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\MainWindow.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\GameView.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\MainView.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\BasePopupView.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\SettingsPopupView.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\StorePopupView.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\NotificationWindow.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\App.baml
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\MainWindow.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\GameView.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\MainView.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\BasePopupView.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\SettingsPopupView.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Popups\StorePopupView.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\NotificationWindow.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\SettingsWindow.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\Views\Windows\StoreWindow.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\App.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\GeneratedInternalTypeHelper.g.cs
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\ZooVillage_MarkupCompile.cache
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\ZooVillage_MarkupCompile.lref
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\ZooVillage.dll
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\refint\ZooVillage.dll
-D:\ООП\Мишин Олег\ZooVillage\obj\Debug\net9.0-windows\ZooVillage.pdb

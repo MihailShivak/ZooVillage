@@ -1,6 +1,5 @@
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using ZooVillage.Views.Windows;
 
 namespace ZooVillage.Views
 {
@@ -16,22 +15,20 @@ namespace ZooVillage.Views
 
         private void StorageButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Открыть окно Амбара");
+            // Здесь будет логика открытия PopupWindow Storage
+            MessageBox.Show("Открыть окно Амбара (Popup 800x600)");
         }
 
         private void StoreButton_Click(object sender, RoutedEventArgs e)
         {
-            var storeWindow = new StoreWindow();
-            storeWindow.OnPurchaseSuccess += msg => NotificationWindow.Show(msg, NotificationType.Success);
-            storeWindow.OnInsufficientFunds += msg => NotificationWindow.Show(msg, NotificationType.Error);
-            storeWindow.ShowDialog();
+            // Здесь будет логика открытия PopupWindow Store
+            MessageBox.Show("Открыть окно Магазина (Popup 800x600)");
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new SettingsWindow();
-            settingsWindow.OnExitToMenu += () => _mainWindow.ShowMainMenu();
-            settingsWindow.ShowDialog();
+            // Здесь будет логика открытия PopupWindow Settings
+            MessageBox.Show("Открыть окно Настроек (Popup 800x600)");
         }
     }
 }
