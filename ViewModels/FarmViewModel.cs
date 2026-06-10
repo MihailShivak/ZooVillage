@@ -47,7 +47,24 @@ namespace ZooVillage.ViewModels
             Budget = 200000;
             InitializeFarm();
             InitializeTimers();
-            AudioManager.PlayBackgroundMusic();
+            InitializeAudio();
+        }
+
+        private void InitializeAudio()
+        {
+            System.Diagnostics.Debug.WriteLine("🎵 Инициализация аудиосистемы...");
+
+            if (AudioManager.MusicLoaded)
+            {
+                AudioManager.PlayBackgroundMusic();
+                Log += "\n🎵 Фоновая музыка загружена и запущена";
+                System.Diagnostics.Debug.WriteLine("✓ Музыка успешно запущена");
+            }
+            else
+            {
+                Log += "\n⚠ Не удалось загрузить музыку. Проверьте наличие файла Assets/Sounds/mz.mp3";
+                System.Diagnostics.Debug.WriteLine("❌ Музыка не загружена");
+            }
         }
 
         private void InitializeFarm()
