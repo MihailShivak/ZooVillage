@@ -124,7 +124,7 @@ namespace ZooVillage.Models.Shop
             return this * Quantity;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is ShopItem other)
                 return this == other;
