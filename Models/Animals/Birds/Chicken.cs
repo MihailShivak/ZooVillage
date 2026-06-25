@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media.Animation;
 using ZooVillage.Models.Base;
 using ZooVillage.Models.Enums;
 using ZooVillage.Models.Interfaces.Base;
@@ -22,11 +21,6 @@ namespace ZooVillage.Models.Animals.Birds
         public Chicken(string name, int age = 60) : base(name, Gender.Female, 2000, age)
         {
             EggsPerWeek = 5;
-        }
-
-        public void LayEgg()
-        {
-            Console.WriteLine($"{Name} снесла яйцо!");
         }
 
         public IJuvenile GiveBirth(IBreeder father)

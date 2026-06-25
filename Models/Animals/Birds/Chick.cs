@@ -1,42 +1,34 @@
-﻿using System;
 using ZooVillage.Models.Base;
 using ZooVillage.Models.Enums;
 using ZooVillage.Models.Interfaces.Base;
+using ZooVillage.Models.Interfaces.Groups;
 using ZooVillage.Models.Interfaces.Specific;
 
 namespace ZooVillage.Models.Animals.Birds
 {
-    public class Chick : Bird, IChick
+    public class Chick : Bird, IJuvenile, IChick
     {
-        public IAnimal Parent { get; }
-        public int DaysSinceBirth => AgeInDays;
+        public int DaysOld { get; private set; }
+        public IAnimal Parent { get; private set; }
+        public int DaysSinceBirth { get; private set; }
+        public string Species => "Chick";
 
-        public Chick(string name, Gender gender, IAnimal parent)
-            : base(name, gender, 500, 0)
+        public Chick(string name, Gender gender, IAnimal mother, int age = 0)
+            : base(name, gender, 500, age)
         {
-            Parent = parent;
+            DaysOld = age;
+            Parent = mother;
+            DaysSinceBirth = age;
         }
-
-        protected override double GetAgeMultiplier() => 1.4;
 
         public override IAnimal TryMature()
         {
-            if (AgeInDays >= 60)
-            {
-                if (Gender == Gender.Female)
-                {
-                    var chicken = new Chicken(this.Name, this.AgeInDays);
-                    chicken.HealthInfo.HealthPoints = this.HealthInfo.HealthPoints;
-                    return chicken;
-                }
-                else
-                {
-                    var rooster = new Rooster(this.Name, this.AgeInDays);
-                    rooster.HealthInfo.HealthPoints = this.HealthInfo.HealthPoints;
-                    return rooster;
-                }
-            }
+            DaysSinceBirth++;
+            if (DaysSinceBirth >= 60)
+                return Gender == Gender.Female ? new Chicken(Name) : new Rooster(Name);
             return null;
         }
+
+        protected override double GetAgeMultiplier() => 0.9;
     }
 }

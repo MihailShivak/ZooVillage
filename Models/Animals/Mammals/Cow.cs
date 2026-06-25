@@ -23,11 +23,6 @@ namespace ZooVillage.Models.Animals.Mammals
             DailyMilkYield = 20.0;
         }
 
-        public void Milk()
-        {
-            Console.WriteLine($"{Name} дает {DailyMilkYield} литров молока!");
-        }
-
         public IJuvenile GiveBirth(IBreeder father)
         {
             if (!CanBreed) return null;

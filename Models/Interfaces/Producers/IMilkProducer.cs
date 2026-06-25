@@ -3,6 +3,5 @@
     public interface IMilkProducer
     {
         double DailyMilkYield { get; }
-        void Milk();
     }
 }

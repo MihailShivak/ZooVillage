@@ -23,7 +23,6 @@ namespace ZooVillage.Views.Converters
                 nameof(Rooster) => "/Assets/Animals/chicken.png",
                 nameof(Chick)   => "/Assets/Animals/chicken.png",
                 nameof(Ram)     => "/Assets/Animals/sheep.png",
-                nameof(Lamb)    => "/Assets/Animals/sheep.png",
                 _ => "/Assets/Animals/chicken.png"
             };
         }

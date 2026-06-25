@@ -13,11 +13,6 @@ namespace ZooVillage.Models.Animals.Birds
 
         public Rooster(string name, int age = 60) : base(name, Gender.Male, 1800, age) { }
 
-        public void Crow()
-        {
-            Console.WriteLine($"{Name}: Кукареку!");
-        }
-
         protected override double GetAgeMultiplier() =>
             Stage == GrowthStage.Old ? 0.5 : 1.0;
 
