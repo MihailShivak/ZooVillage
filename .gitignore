@@ -1,4 +1,4 @@
-# Visual Studio cache and options
+# Visual Studio cache / options
 .vs/
 *.suo
 *.user
@@ -10,19 +10,48 @@
 [Rr]elease/
 x64/
 x86/
+[Ww]in32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
 [Bb]in/
 [Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
 
 # Generated files
 *.cache
+*.g.cs
 *.g.i.cs
 *.AssemblyInfo.cs
 *.AssemblyInfoInputs.cache
 *.GeneratedMSBuildEditorConfig.editorconfig
 
-# Build folders
-bin/
-obj/
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
 
-# IDE files
-.vs/
+# Rider
+.idea/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
